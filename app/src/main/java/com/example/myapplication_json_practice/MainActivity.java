@@ -58,7 +58,7 @@ public class MainActivity extends AppCompatActivity {
                         Log.d("mjson_ID", String.valueOf(id));
                         Log.d("mjson_name", String.valueOf(sname));
                         Log.d("mjson_gender", String.valueOf(gender));
-                        Student stud=new Student(String.valueOf(id));
+                        Student stud=new Student(String.valueOf(id),String.valueOf(sname), String.valueOf(gender));
                     }
 
 
