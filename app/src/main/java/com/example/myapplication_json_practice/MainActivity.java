@@ -13,9 +13,12 @@ import org.json.JSONObject;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
+import java.util.Iterator;
 
 public class MainActivity extends AppCompatActivity {
-
+    private ArrayList<Student> studentArrayList;
+Student s=new Student();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,23 +50,36 @@ public class MainActivity extends AppCompatActivity {
             // Log.d("json",js);
             try {
                 JSONArray mJSONArray=new JSONArray(js);
+                studentArrayList = new ArrayList<>();
                 for(int i=0;i<mJSONArray.length();i++) {
 
                     JSONObject mJSONObj=mJSONArray.getJSONObject(i);
                     //  Log.d("mjson", mJSONObj.toString());
                     if(mJSONObj.has("sid")) {
-                        int id = mJSONObj.getInt("sid");
+                        String id = mJSONObj.getString("sid");
                         String sname = mJSONObj.getString("sname");
                         String gender = mJSONObj.getString("gender");
-                        Log.d("mjson_ID", String.valueOf(id));
-                        Log.d("mjson_name", String.valueOf(sname));
-                        Log.d("mjson_gender", String.valueOf(gender));
-                        Student stud=new Student(String.valueOf(id),String.valueOf(sname), String.valueOf(gender));
+                     //   Log.d("mjson_ID", String.valueOf(id));
+                     //   Log.d("mjson_name", String.valueOf(sname));
+                     //   Log.d("mjson_gender", String.valueOf(gender));
+                       studentArrayList.add(new  Student(String.valueOf(id),String.valueOf(sname), String.valueOf(gender)));
+
+                       //  for (Student str : studentArrayList) {
+                      //      System.out.println(str.getSid());
+                          //  System.out.println(str.getSname());
+
+                       // }
+                        System.out.println("Using Iterator class");
+                        System.out.println("-----------------------");
+                        Iterator<Student> it = studentArrayList.iterator();
+                        while(it.hasNext()){
+                            System.out.println(it.next().getSname());
+                        }
                     }
 
 
                 }
-
+                    s.setStudentArrayList(studentArrayList);
             } catch (JSONException e) {
                 e.printStackTrace();
             }
