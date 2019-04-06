@@ -3,7 +3,10 @@ package com.example.myapplication_json_practice;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 
+import com.example.myapplication_json_practice.Adapter.List_Adapter;
 import com.example.myapplication_json_practice.Modal.Student;
 
 import org.json.JSONArray;
@@ -12,12 +15,15 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.lang.reflect.Array;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Iterator;
 
 public class MainActivity extends AppCompatActivity {
     private ArrayList<Student> studentArrayList;
+     private ArrayList<String> iname;
+    private ListView lstStudentData;
 Student s=new Student();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,6 +31,13 @@ Student s=new Student();
         setContentView(R.layout.activity_main);
        // loadJSONFromAsset();
         processJSON();
+        lstStudentData = findViewById(R.id.lst1);
+        iname = new ArrayList<>();
+        for (Student str : studentArrayList) {
+            iname.add(str.getSname());
+        }
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, iname );
+        lstStudentData.setAdapter(adapter);
     }
 
     public String loadJSONFromAsset() {
@@ -86,4 +99,8 @@ Student s=new Student();
 
 
         }
-}}
+}
+
+
+
+}
