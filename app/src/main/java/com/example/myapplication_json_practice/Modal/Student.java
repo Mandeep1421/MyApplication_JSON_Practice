@@ -53,4 +53,13 @@ public class Student implements Serializable {
     public ArrayList<Student> getStudentArrayList() {
         return studentArrayList;
     }
+
+    @Override
+    public String toString() {
+        return "Student{" +
+                "sid='" + sid + '\'' +
+                ", sname='" + sname + '\'' +
+                ", gender='" + gender + '\'' +
+                '}';
+    }
 }
