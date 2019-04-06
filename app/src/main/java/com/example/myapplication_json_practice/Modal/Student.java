@@ -1,19 +1,27 @@
 package com.example.myapplication_json_practice.Modal;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 public class Student implements Serializable {
 
     private String sid;
     private String sname;
     private String gender;
-
+    private ArrayList<Student> studentArrayList;
     public Student(String sid, String sname, String gender) {
         this.sid = sid;
         this.sname = sname;
         this.gender = gender;
     }
 
+    public Student()
+    {
+        this.sid ="";
+        this.sname =  "";
+        this.gender = "";
+        studentArrayList = new ArrayList<>();
+    }
     public String getSid() {
         return sid;
     }
@@ -36,5 +44,13 @@ public class Student implements Serializable {
 
     public void setGender(String gender) {
         this.gender = gender;
+    }
+
+    public void setStudentArrayList(ArrayList<Student> studentArrayList) {
+        this.studentArrayList = studentArrayList;
+    }
+
+    public ArrayList<Student> getStudentArrayList() {
+        return studentArrayList;
     }
 }
