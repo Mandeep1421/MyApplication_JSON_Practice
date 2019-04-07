@@ -1,8 +1,11 @@
 package com.example.myapplication_json_practice;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
@@ -38,6 +41,16 @@ Student s=new Student();
         }
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, iname );
         lstStudentData.setAdapter(adapter);
+
+        lstStudentData.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Student stud = studentArrayList.get(position);
+                Intent mIntent=new Intent(MainActivity.this,Result_Display.class);
+                mIntent.putExtra("stud",stud);
+                startActivity(mIntent);
+            }
+        });
     }
 
     public String loadJSONFromAsset() {
